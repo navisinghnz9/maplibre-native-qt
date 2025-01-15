@@ -20,14 +20,18 @@
 #include <memory>
 #include <mutex>
 
+#include <mbgl/actor/scheduler.hpp>
+
 namespace mbgl {
 class Renderer;
 class UpdateParameters;
+class TaggedScheduler;
 } // namespace mbgl
 
 namespace QMapLibre {
 
 class RendererBackend;
+
 
 class MapRenderer : public QObject {
     Q_OBJECT
@@ -42,6 +46,10 @@ public:
 
     // Thread-safe, called by the Frontend
     void updateParameters(std::shared_ptr<mbgl::UpdateParameters> parameters);
+
+    mbgl::TaggedScheduler& getThreadPool() {
+        return m_backend.getThreadPool();
+    }
 
 signals:
     void needsRendering();
