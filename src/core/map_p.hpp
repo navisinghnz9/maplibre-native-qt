@@ -21,6 +21,8 @@
 #include <atomic>
 #include <memory>
 
+#include <mbgl/actor/scheduler.hpp>
+
 namespace QMapLibre {
 
 class MapPrivate : public QObject, public mbgl::RendererFrontend {
@@ -50,6 +52,8 @@ public:
 
     mbgl::EdgeInsets margins;
     std::unique_ptr<mbgl::Map> mapObj{};
+
+    const mbgl::TaggedScheduler& getThreadPool() const override;
 
 public slots:
     void requestRendering();

@@ -1717,6 +1717,11 @@ void MapPrivate::createRenderer() {
     }
 }
 
+const mbgl::TaggedScheduler& MapPrivate::getThreadPool() const
+{
+  return const_cast<mbgl::TaggedScheduler&>(m_mapRenderer->getThreadPool());
+}
+
 void MapPrivate::destroyRenderer() {
     const std::lock_guard<std::recursive_mutex> lock(m_mapRendererMutex);
 
