@@ -47,7 +47,7 @@ public:
     // Thread-safe, called by the Frontend
     void updateParameters(std::shared_ptr<mbgl::UpdateParameters> parameters);
 
-    mbgl::TaggedScheduler& getThreadPool() {
+    inline mbgl::TaggedScheduler& getThreadPool() {
         return m_backend.getThreadPool();
     }
 
